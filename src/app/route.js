@@ -7,6 +7,9 @@ export async function GET() {
     
     // Inject client-side script to rewrite link hrefs and intercept clicks
     const script = `
+      <style>
+        #__framer-badge-container { display: none !important; visibility: hidden !important; opacity: 0 !important; }
+      </style>
       <script>
         (function() {
           function rewriteLinks() {
