@@ -217,27 +217,27 @@ export function LoginForm({
   onGoogleLogin = () => {}
 }) {
   return (
-    /* Card: Width 420px, Padding 44px 32px 28px, Border Radius 24px */
-    <div className="w-full max-w-[420px] pt-[44px] px-[32px] pb-[28px] bg-white/85 backdrop-blur-2xl rounded-[24px] border border-[#E9E9EF]/80 shadow-[0_32px_80px_-16px_rgba(255,46,136,0.18)] relative z-10 text-left animate-slideUp flex flex-col justify-between my-6">
+    /* Card: Width 420px, Padding 32px 32px 24px, Border Radius 24px */
+    <div className="w-full max-w-[400px] pt-[32px] px-[32px] pb-[24px] bg-white/85 backdrop-blur-2xl rounded-[24px] border border-[#E9E9EF]/80 shadow-[0_32px_80px_-16px_rgba(255,46,136,0.18)] relative z-10 text-left animate-slideUp flex flex-col justify-between my-4">
       
-      {/* Floating Icon: 56×56px, Border Radius 16px, Top -28px, Center Aligned */}
-      <div className="absolute top-[-28px] left-1/2 -translate-x-1/2 w-[56px] h-[56px] rounded-[16px] bg-gradient-to-tr from-[#FF2E88] to-[#FF5AAE] text-white shadow-xl shadow-[#FF2E88]/30 flex items-center justify-center transition-transform duration-250 hover:scale-105 z-20">
-        <Sparkles size={26} />
+      {/* Floating Icon: 48×48px, Border Radius 14px, Top -24px, Center Aligned */}
+      <div className="absolute top-[-24px] left-1/2 -translate-x-1/2 w-[48px] h-[48px] rounded-[14px] bg-gradient-to-tr from-[#FF2E88] to-[#FF5AAE] text-white shadow-xl shadow-[#FF2E88]/30 flex items-center justify-center transition-transform duration-250 hover:scale-105 z-20">
+        <Sparkles size={22} />
       </div>
 
       <div>
-        {/* Welcome Heading: Font Size 32px, Line Height 38px, Weight 800, Margin Top 10px */}
+        {/* Welcome Heading: Font Size 28px, Line Height 34px, Weight 800, Margin Top 8px */}
         <div className="text-center">
           <h1 
-            className="text-[30px] sm:text-[32px] leading-[38px] font-extrabold text-[#231F2D] tracking-tight font-display mt-[10px]"
+            className="text-[26px] sm:text-[28px] leading-[34px] font-extrabold text-[#231F2D] tracking-tight font-display mt-[8px]"
             style={{ color: "#231F2D" }}
           >
             Welcome Back
           </h1>
 
-          {/* Subtitle: Font Size 15px, Margin Top 4px, Margin Bottom 22px */}
+          {/* Subtitle: Font Size 14px, Margin Top 4px, Margin Bottom 16px */}
           <p 
-            className="text-[14.5px] sm:text-[15px] font-medium text-[#7A7A87] mt-[4px] mb-[22px]"
+            className="text-[14px] font-medium text-[#7A7A87] mt-[4px] mb-[16px]"
             style={{ color: "#7A7A87" }}
           >
             Sign in to your SocialPulse workspace
@@ -250,17 +250,18 @@ export function LoginForm({
           </div>
         )}
 
-        <form onSubmit={onSubmit}>
-          {/* Email Input: Height 46px, Radius 14px, Padding pl-42px pr-14px, Font Size 15px, Margin Bottom 12px */}
-          <div className="relative w-full mb-[12px]">
-            <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-[#7A7A87] pointer-events-none z-10 flex items-center justify-center">
-              <User size={18} />
+        <form onSubmit={onSubmit} suppressHydrationWarning>
+          {/* Email Input */}
+          <div className="relative w-full mb-[10px]">
+            <div className="absolute left-[16px] top-1/2 -translate-y-1/2 text-[#7A7A87] pointer-events-none z-10 flex items-center justify-center">
+              <User size={20} />
             </div>
             <input
+              suppressHydrationWarning
               id="email"
               type="text"
-              className="w-full h-[46px] pl-[42px] pr-[14px] rounded-[14px] bg-white border border-[#E9E9EF] text-[#231F2D] text-[15px] font-medium placeholder-[#7A7A87]/65 focus:bg-white focus:outline-none focus:border-[#FF2E88] focus:ring-4 focus:ring-[#FF2E88]/15 transition-all duration-250 ease-out shadow-sm"
-              style={{ color: "#231F2D" }}
+              className="w-full h-[44px] pl-[42px] pr-[16px] rounded-[14px] bg-white border border-[#E9E9EF] text-[#231F2D] text-[15px] font-medium placeholder-[#7A7A87]/65 focus:bg-white focus:outline-none focus:border-[#FF2E88] focus:ring-4 focus:ring-[#FF2E88]/15 transition-all duration-250 ease-out shadow-sm"
+              style={{ paddingLeft: "42px", paddingRight: "16px", color: "#231F2D" }}
               placeholder="Email or username"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -269,16 +270,17 @@ export function LoginForm({
             />
           </div>
 
-          {/* Password Input: Height 46px, Radius 14px, Padding pl-42px pr-42px, Font Size 15px, Margin Bottom 12px */}
-          <div className="relative w-full mb-[12px]">
-            <div className="absolute left-[14px] top-1/2 -translate-y-1/2 text-[#7A7A87] pointer-events-none z-10 flex items-center justify-center">
-              <Lock size={18} />
+          {/* Password Input */}
+          <div className="relative w-full mb-[10px]">
+            <div className="absolute left-[16px] top-1/2 -translate-y-1/2 text-[#7A7A87] pointer-events-none z-10 flex items-center justify-center">
+              <Lock size={20} />
             </div>
             <input
+              suppressHydrationWarning
               id="password"
               type={showPassword ? "text" : "password"}
-              className="w-full h-[46px] pl-[42px] pr-[42px] rounded-[14px] bg-white border border-[#E9E9EF] text-[#231F2D] text-[15px] font-medium placeholder-[#7A7A87]/65 focus:bg-white focus:outline-none focus:border-[#FF2E88] focus:ring-4 focus:ring-[#FF2E88]/15 transition-all duration-250 ease-out shadow-sm"
-              style={{ color: "#231F2D" }}
+              className="w-full h-[44px] pl-[42px] pr-[42px] rounded-[14px] bg-white border border-[#E9E9EF] text-[#231F2D] text-[15px] font-medium placeholder-[#7A7A87]/65 focus:bg-white focus:outline-none focus:border-[#FF2E88] focus:ring-4 focus:ring-[#FF2E88]/15 transition-all duration-250 ease-out shadow-sm"
+              style={{ paddingLeft: "42px", paddingRight: "42px", color: "#231F2D" }}
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -292,18 +294,18 @@ export function LoginForm({
               tabIndex="-1"
               title={showPassword ? "Hide password" : "Show password"}
             >
-              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
           </div>
 
-          {/* Remember Me Row: Margin Top 2px, Margin Bottom 16px, Font Size 13px, Checkbox 15×15px */}
-          <div className="flex items-center justify-between mt-[2px] mb-[16px] text-[13px]">
+          {/* Remember Me Row */}
+          <div className="flex items-center justify-between mt-[2px] mb-[12px] text-[13px]">
             <label className="flex items-center gap-2 font-medium text-[#231F2D] cursor-pointer select-none" style={{ color: "#231F2D" }}>
               <input
                 type="checkbox"
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
-                className="w-[15px] h-[15px] rounded-[4px] text-[#FF2E88] border-[#E9E9EF] focus:ring-[#FF2E88] cursor-pointer accent-[#FF2E88] transition-all duration-250"
+                className="w-[14px] h-[14px] rounded-[4px] text-[#FF2E88] border-[#E9E9EF] focus:ring-[#FF2E88] cursor-pointer accent-[#FF2E88] transition-all duration-250"
               />
               <span>Remember me</span>
             </label>
@@ -316,11 +318,12 @@ export function LoginForm({
             </Link>
           </div>
           
-          {/* Sign In Button: Height 46px, Radius 14px, Font Size 15px, Weight 700, Margin Top 4px, Arrow 16px, Gap 8px */}
+          {/* Sign In Button */}
           <button
+            suppressHydrationWarning
             type="submit"
             disabled={loading}
-            className="group w-full h-[46px] flex items-center justify-center gap-2 bg-gradient-to-r from-[#FF2E88] to-[#FF5AAE] hover:from-[#e6207a] hover:to-[#f0499e] rounded-[14px] text-white font-bold text-[15px] mt-[4px] shadow-[0_12px_32px_-6px_rgba(255,46,136,0.35)] hover:shadow-[0_18px_40px_-6px_rgba(255,46,136,0.5)] hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-[#FF2E88]/30 transition-all duration-250 ease-out disabled:opacity-70"
+            className="group w-full h-[44px] flex items-center justify-center gap-2 bg-gradient-to-r from-[#FF2E88] to-[#FF5AAE] hover:from-[#e6207a] hover:to-[#f0499e] rounded-[14px] text-white font-bold text-[15px] shadow-[0_12px_32px_-6px_rgba(255,46,136,0.35)] hover:shadow-[0_18px_40px_-6px_rgba(255,46,136,0.5)] hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-[#FF2E88]/30 transition-all duration-250 ease-out disabled:opacity-70"
           >
             {loading ? (
               <span className="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
@@ -330,35 +333,11 @@ export function LoginForm({
           </button>
         </form>
 
-        {/* Divider: Margin 18px 0, Font Size 11px */}
-        <div className="relative flex my-[18px] items-center">
-          <div className="flex-grow border-t border-[#E9E9EF]"></div>
-          <span 
-            className="flex-shrink mx-3 text-[#7A7A87] text-[11px] font-semibold tracking-wider uppercase"
-            style={{ color: "#7A7A87" }}
-          >
-            OR CONTINUE WITH
-          </span>
-          <div className="flex-grow border-t border-[#E9E9EF]"></div>
-        </div>
 
-        {/* Google Button: Height 46px, Radius 14px, Font Size 15px, Google Icon 18px */}
-        <button
-          type="button"
-          onClick={onGoogleLogin}
-          disabled={loading}
-          className="w-full h-[46px] flex items-center justify-center gap-2.5 bg-white hover:bg-[#FFF7FB] rounded-[14px] text-[#231F2D] font-semibold text-[15px] border border-[#E9E9EF] hover:border-[#FF5AAE]/40 focus:outline-none focus:ring-4 focus:ring-[#FF2E88]/15 shadow-sm transition-all duration-250 ease-out"
-          style={{ color: "#231F2D" }}
-        >
-          <svg className="w-[18px] h-[18px]" viewBox="0 0 48 48">
-            <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039L38.802 8.841C34.553 4.806 29.613 2.5 24 2.5C11.983 2.5 2.5 11.983 2.5 24s9.483 21.5 21.5 21.5S45.5 36.017 45.5 24c0-1.538-.135-3.022-.389-4.417z"></path><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12.5 24 12.5c3.059 0 5.842 1.154 7.961 3.039l5.839-5.841C34.553 4.806 29.613 2.5 24 2.5C16.318 2.5 9.642 6.723 6.306 14.691z"></path><path fill="#4CAF50" d="M24 45.5c5.613 0 10.553-2.306 14.802-6.341l-5.839-5.841C30.842 35.846 27.059 38 24 38c-5.039 0-9.345-2.608-11.124-6.481l-6.571 4.819C9.642 41.277 16.318 45.5 24 45.5z"></path><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571l5.839 5.841C44.196 35.123 45.5 29.837 45.5 24c0-1.538-.135-3.022-.389-4.417z"></path>
-          </svg>
-          <span>Continue with Google</span>
-        </button>
       </div>
 
-      {/* Footer: Margin Top 16px, Font Size 13px */}
-      <div className="mt-[16px] text-center">
+      {/* Footer */}
+      <div className="mt-[12px] text-center">
         <p className="text-[13px] text-[#7A7A87] font-medium" style={{ color: "#7A7A87" }}>
           New to SocialPulse?{" "}
           <Link 
@@ -390,6 +369,7 @@ export default function LoginPage() {
     const clearSession = async () => {
       try {
         localStorage.removeItem("socialpulse_mock_user");
+        localStorage.removeItem("socialpulse_connected_platforms");
         await supabase.auth.signOut();
       } catch (err) {
         console.error("Error clearing session:", err);
@@ -427,7 +407,19 @@ export default function LoginPage() {
         } else {
           localStorage.removeItem("socialpulse_mock_user");
         }
-        router.push("/dashboard");
+
+        // Check if platforms are connected
+        const storedPlatforms = localStorage.getItem("socialpulse_connected_platforms");
+        let connectedPlatforms = null;
+        if (storedPlatforms) {
+          try { connectedPlatforms = JSON.parse(storedPlatforms); } catch(e) {}
+        }
+        
+        if (!connectedPlatforms || connectedPlatforms.length === 0) {
+          router.push("/onboarding");
+        } else {
+          router.push("/dashboard");
+        }
       } else {
         setError("Unable to authenticate. Please check your credentials.");
       }

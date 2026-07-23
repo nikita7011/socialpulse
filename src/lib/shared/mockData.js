@@ -47,7 +47,7 @@ export const generateMockTimePerformance = () => {
   return data;
 };
 
-export const generateSeededStats = (username) => {
+export const generateSeededStats = (username, connectedPlatforms = null) => {
   const seed = hashCode(username || "nikita7011");
   const isDefault = !username || username === "@nikita7011" || username === "nikita7011";
   
@@ -147,9 +147,6 @@ export const generateSeededStats = (username) => {
     });
   }
 
-  const highestViewPost = [...posts].sort((a, b) => b.reach - a.reach)[0];
-  const highestLikesPost = [...posts].sort((a, b) => b.likes - a.likes)[0];
-
   const platformPerformance = [
     { platform: "Instagram", total_posts: Math.floor(total_posts * 0.3), total_likes: Math.floor(total_interactions * 0.7 * 0.35), total_comments: Math.floor(total_interactions * 0.15 * 0.35), total_shares: Math.floor(total_interactions * 0.15 * 0.35), total_reach: Math.floor(total_reach * 0.3) },
     { platform: "LinkedIn", total_posts: Math.floor(total_posts * 0.25), total_likes: Math.floor(total_interactions * 0.7 * 0.28), total_comments: Math.floor(total_interactions * 0.15 * 0.28), total_shares: Math.floor(total_interactions * 0.15 * 0.28), total_reach: Math.floor(total_reach * 0.25) },
@@ -182,27 +179,52 @@ export const generateSeededStats = (username) => {
 
   const timePerformance = generateMockTimePerformance();
 
+  let filteredPosts = posts;
+  let filteredPlatformPerformance = platformPerformance;
+  let filteredPostTypes = postTypes;
+  let filteredFollowersGrowth = followersGrowth;
+
+  if (connectedPlatforms && connectedPlatforms.length > 0) {
+    filteredPosts = posts.filter(p => connectedPlatforms.includes(p.platform));
+    filteredPlatformPerformance = platformPerformance.filter(p => connectedPlatforms.includes(p.platform));
+    filteredPostTypes = postTypes.filter(p => connectedPlatforms.includes(p.platform));
+    filteredFollowersGrowth = followersGrowth.filter(p => connectedPlatforms.includes(p.platform));
+  }
+
+  const highestViewPost = [...filteredPosts].sort((a, b) => b.reach - a.reach)[0];
+  const highestLikesPost = [...filteredPosts].sort((a, b) => b.likes - a.likes)[0];
+
+  const total_reach_filtered = filteredPlatformPerformance.reduce((sum, p) => sum + p.total_reach, 0);
+  const total_interactions_filtered = filteredPlatformPerformance.reduce((sum, p) => sum + p.total_likes + p.total_comments + p.total_shares, 0);
+  const total_posts_filtered = filteredPlatformPerformance.reduce((sum, p) => sum + p.total_posts, 0);
+
+  // Recalculate total follower count from the last date snapshot for connected platforms
+  const lastSnapshotDate = followersGrowth.length > 0 ? followersGrowth[followersGrowth.length - 1].snapshot_date : null;
+  const follower_count_filtered = lastSnapshotDate 
+    ? filteredFollowersGrowth.filter(f => f.snapshot_date === lastSnapshotDate).reduce((sum, f) => sum + f.follower_count, 0)
+    : follower_count;
+
   return {
     isDefault,
     kpis: {
-      total_posts,
-      total_reach,
-      total_interactions,
+      total_posts: connectedPlatforms ? total_posts_filtered : total_posts,
+      total_reach: connectedPlatforms ? total_reach_filtered : total_reach,
+      total_interactions: connectedPlatforms ? total_interactions_filtered : total_interactions,
       avg_engagement_rate
     },
     growth: {
       followers_gained,
       followers_lost,
       net_growth,
-      follower_count,
+      follower_count: connectedPlatforms ? follower_count_filtered : follower_count,
       gainedList,
       unfollowersList
     },
-    platformPerformance,
-    postTypes,
-    followersGrowth,
+    platformPerformance: filteredPlatformPerformance,
+    postTypes: filteredPostTypes,
+    followersGrowth: filteredFollowersGrowth,
     timePerformance,
-    topPosts: posts,
+    topPosts: filteredPosts,
     highestViewPost,
     highestLikesPost
   };

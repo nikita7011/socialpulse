@@ -131,7 +131,13 @@ export default function OverviewTab({
   const [chartTab, setChartTab] = useState("bar");
   
   const getFormatDonutData = () => {
-    if (!data || !data.posts) return formatDataFallback;
+    const defaultDonut = [
+      { name: "Videos", value: 38, color: "#ec4899" },
+      { name: "Carousels", value: 27, color: "#8b5cf6" },
+      { name: "Images", value: 22, color: "#06b6d4" },
+      { name: "Text", value: 13, color: "#f59e0b" },
+    ];
+    if (!data || !data.posts) return formatDataFallback || defaultDonut;
     const counts = { video: 0, carousel: 0, image: 0, text: 0 };
     let total = 0;
     data.posts.forEach(p => {
@@ -141,7 +147,7 @@ export default function OverviewTab({
         total++;
       }
     });
-    if (total === 0) return formatDataFallback;
+    if (total === 0) return formatDataFallback || defaultDonut;
     return [
       { name: "Videos", value: Math.round((counts.video / total) * 100), color: "#ec4899" },
       { name: "Carousels", value: Math.round((counts.carousel / total) * 100), color: "#8b5cf6" },
