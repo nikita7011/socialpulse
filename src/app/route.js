@@ -67,8 +67,8 @@ export async function GET() {
               let parent = footerDocLink.parentElement;
               for (let i = 0; i < 8; i++) {
                 if (parent && parent.tagName !== "BODY") {
-                  // Check if it's a wide container (like a section)
-                  if (parent.offsetWidth > window.innerWidth * 0.8) {
+                  // Check if it's a wide container (like a section) but not too tall (to avoid hiding the whole page)
+                  if (parent.offsetWidth > window.innerWidth * 0.8 && parent.offsetHeight < 800) {
                     parent.style.display = "none"; // Hide the old footer completely
                     window.footerUpdated = true;
                     
