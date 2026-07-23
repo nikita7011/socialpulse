@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CalendarDays, CheckSquare, Layers, Plus, X, Sparkles, Zap, Trash2, Clock, Send } from "lucide-react";
-import { platformColors } from "../../lib/constants";
+import { platformColors } from "@/lib/frontend/constants";
 
 export default function CampaignsTab({ session }) {
   const [campaignView, setCampaignView] = useState("kanban"); // "kanban" or "list"

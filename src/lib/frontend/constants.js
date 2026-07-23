@@ -1,5 +1,5 @@
 import React from "react";
-import { Instagram, Linkedin, Youtube, Twitter, Threads, Facebook } from "../components/icons/Icons";
+import { Instagram, Linkedin, Youtube, Twitter, Threads, Facebook } from "@/components/icons/Icons";
 
 export const platformColors = {
   Instagram: "from-pink-500 to-rose-500",
