@@ -1,0 +1,15 @@
+{
+  "files.exclude": {
+    "**/.env.example": true,
+    "**/.env.local": true,
+    "**/.gitignore": true,
+    "**/.prettierignore": true,
+    "**/.prettierrc": true,
+    "**/eslint.config.mjs": true,
+    "**/jsconfig.json": true,
+    "**/next.config.mjs": true,
+    "**/postcss.config.mjs": true,
+    "**/tailwind.config.js": true,
+    "**/package-lock.json": true
+  }
+}

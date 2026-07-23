@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), sans-serif;
+  --font-display: var(--font-outfit), var(--font-sans);
+  
+  /* Color theme mapping for v4 theme matching */
+  --color-primary: #FF2E88;
+  --color-accent: #FF5AAE;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #FFF7FB;
+    color: #231F2D;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: #231F2D;
+  }
+}
+
+/* Custom Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E9E9EF;
+  border-radius: 9999px;
+  transition: background 250ms ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF2E88/30;
+}
+
+/* Global autofill reset to match input backgrounds */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #231F2D !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
