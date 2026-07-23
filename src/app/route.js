@@ -71,6 +71,12 @@ export async function GET() {
       </script>
     `;
     
+    // Remove any Framer favicons directly by URL
+    html = html.replace(/https:\/\/framerusercontent\.com\/sites\/icons\/[^"]+/gi, '/favicon.ico');
+    
+    // Also strip out any meta tags that mention framer
+    html = html.replace(/<meta[^>]*content="[^"]*framer[^"]*"[^>]*>/gi, '');
+
     html = html.replace("</body>", `${script}</body>`);
     
     return new Response(html, {
